@@ -1,0 +1,18 @@
+
+.myArticel{
+    width: 60%;
+    margin: auto;
+}
+.myArticel + .myArticel{
+    margin-top: 70px ;
+    padding: 20px 0px;
+    border-top: solid 1px grey;
+}
+h1{
+    text-transform: capitalize;
+}
+h4{
+    font-size: 40px;
+    text-align: center;
+    text-transform: capitalize;
+}
