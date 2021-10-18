@@ -3,6 +3,7 @@
 @section('content')
     
     <article class="myArticel">
+        
         <h1>{{ $post->title }}</h1>
 
        <div>

@@ -5,19 +5,19 @@
 @section('content')
 
 
-    @foreach ($post as $postX)
+    @foreach ($posts as $post)
         
 
     <div class="myArticel">
         
         <h1>
-            <a href="/posts/{{ $postX->slug }}">
-                {{ $postX->title }}
+            <a href="/posts/{{$post->id}}">
+                {{$post->title}}
             </a>
         </h1>
 
         <div class="body">
-            {{ $postX->excerpt }}
+            {{$post->excerpt}}
         </div>
 
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\searchPost;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 
@@ -20,16 +20,15 @@ use Illuminate\Support\Facades\File;
 Route::get('/', function () {
 
     return view('posts' , [
-        "post" => searchPost::all()
+        "posts" => Post::all()
     ]);
     
 });
 
-Route::get('posts/{post}' , function($element) {  
+Route::get('posts/{post}' , function($id) {  
 
     return view('post' , [
-        'post' => searchPost::findorfail($element)
+        'post' => Post::findOrFail($id)
     ]);
 
-}) -> where('post' , '[A-z_\-]+');
-
+});
