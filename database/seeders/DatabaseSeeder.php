@@ -28,13 +28,8 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'food'
         // ]);
 
-        $user = User::factory()->create([
-            'name' => 'davit chanturia'
-        ]);
-        Post::factory(5)->create([
-            // 'user_id' => $user->id,
-            // '' => $cat->name
-        ]);
+        User::factory()->create();
+        Post::factory(5)->create();
         // $user = Category::factory()->create();
 
         // $personal = Category::create([

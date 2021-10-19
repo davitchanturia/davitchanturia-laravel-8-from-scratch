@@ -11,6 +11,8 @@ class Post extends Model
 
     protected $guarded = [];
 
+    // ამას ვუწერთ რომ ბევრი პოსტის წამოღებისას წამოიღოს მოცემული მნიშნელობების მიხედვით რითიც დაიზოგება ქუერების რაოდენობა და მალე ჩაიტვირთება
+    protected $with = ['category', 'author'];
 
     // ამ მეთოდით Post მოდელიდან ვამყარებთ კავშირს Category-ზე  == Eloquent relationship
     public function category()
@@ -18,8 +20,8 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function user()
+    public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

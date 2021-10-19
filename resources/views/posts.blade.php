@@ -5,23 +5,23 @@
 @section('content')
 
 
-    @foreach ($posts as $postx)
+    @foreach ($posts as $post)
         
 
     <div class="myArticel">
         
         <h1>
-            <a href="/posts/{{$postx->slug}}">
-                {{$postx->title}}
+            <a href="/posts/{{$post->slug}}">
+                {{$post->title}}
             </a>
         </h1>
 
         <p>
-            <a href="/categories/{{$postx->category->slug}}">{{$postx->category->name}}</a>
-        </p>
+            by <a href="/authors/{{$post->author->username}}">{{$post->author->name}}</a>  in <a href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>
+         </p>
 
         <div class="body">
-            {{$postx->excerpt}}
+            {{$post->excerpt}}
         </div>
 
     </div>
