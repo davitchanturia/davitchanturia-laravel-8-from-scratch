@@ -12,42 +12,10 @@
             <p class="text-center">no posts yet, please check later</p>
         
         @endif
-        
 
-        
-
-
-
-
-
-
-
-
-
-        {{-- <div class="lg:grid lg:grid-cols-2">
-            <x-post-card />
-            <x-post-card />
-        </div>
-
-        <div class="lg:grid lg:grid-cols-3">
-            <x-post-card />
-            <x-post-card />
-            <x-post-card />
-        </div> --}}
     </main>
 
 </x-layout>
-
-
-
-
-
-
-
-
-
-
-
 
 
 {{-- @extends('layout')
