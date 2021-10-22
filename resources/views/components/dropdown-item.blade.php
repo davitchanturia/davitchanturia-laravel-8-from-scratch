@@ -5,7 +5,7 @@
 
    if ($active)  
    {
-        $classes .= ' bg-blue-500 text-white';
+      $classes .= ' bg-blue-500 text-white';
    }
    
 @endphp

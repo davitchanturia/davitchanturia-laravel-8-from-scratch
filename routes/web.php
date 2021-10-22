@@ -16,22 +16,32 @@ use Illuminate\Support\Facades\File;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// if(request('search')){
+//     $post->where('title', 'like', '%' . request('seaarch') . '%' );
+// }
 
 
 
 Route::get('/', function () {
+    $posts = Post::latest();
+
+    if(request('search')){
+        $posts
+           ->where('title', 'like', '%' . request('search') . '%' )
+           ->orwhere('body', 'like', '%' . request('search') . '%' );
+    }
 
     return view('posts' , [
-        "posts" => Post::latest()->get(),
+        "posts" => $posts->get(),
         "categories" => Category::all()
     ]);
     
-});
+}); 
 
 Route::get('posts/{post:slug}' , function(Post $post) {  
 
     return view('post' , [
-        'post' => $post
+        'post' => $post,
     ]);
 
 });
