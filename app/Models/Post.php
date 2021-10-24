@@ -24,4 +24,18 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+
+    // კონტროლერში გამოძახებული ფილტერ მეთოდია
+    public function scopeFilter ($query, array $filters)
+    {
+        // ჯერ ვამოწმებთ ინფუთის ველიუს და შემდეგ ვეძებთ ბაზაში დაწერილი ლოგიკის მიხედვით 
+        if( isset( $filters['search'] ) ){
+             $query
+                ->where('title', 'like', '%' . request('search') . '%' )
+                ->orwhere('body', 'like', '%' . request('search') . '%' );
+            }
+         
+    }
+
 }
