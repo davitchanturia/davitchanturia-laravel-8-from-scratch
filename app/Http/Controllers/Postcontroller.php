@@ -14,8 +14,9 @@ class Postcontroller extends Controller
     public function index ()
     {
         return view('posts.index' , [
-            "posts" => Post::latest()->filter( request(['search', 'category', 'author']) )->get(), // თუ შეყვანილი არაა სერჩს ინფუთი გამოტოვებს ფილტერის ნაწილს და ჩატვირთავს ყველა პოსტს
-            // "categories" => Category::all(),
+            "posts" => Post::latest()->filter(
+                 request(['search', 'category', 'author']) 
+            )->paginate(6)->withQueryString(), // თუ შეყვანილი არაა სერჩს ინფუთი გამოტოვებს ფილტერის ნაწილს და ჩატვირთავს ყველა პოსტს (paginate ნომრავს გვერდებს, პარამეტრდ ვუწერთ თითო გვერდზე რამდენი პოსტიც გვინდა რო იყოს)
         ]);
 
     }

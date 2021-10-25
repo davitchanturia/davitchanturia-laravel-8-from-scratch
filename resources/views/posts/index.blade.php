@@ -7,6 +7,9 @@
         {{-- if პირობით ვამოწმებთ თუ არის ბაზაში ერთი პოსტი მაინც --}}
         @if ($posts->count())
             <x-posts-grid :posts="$posts"/>
+
+            {{-- გამოგვაქვს გვერდებზე გადასასვლელი ლინკების დივი --}}
+            {{ $posts->links() }}
         @else   
         
             <p class="text-center">no posts yet, please check later</p>

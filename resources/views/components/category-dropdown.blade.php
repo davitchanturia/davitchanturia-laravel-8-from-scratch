@@ -21,7 +21,7 @@
     
     
     
-    <x-dropdown-item href="/" :active="request()->routeIs('home')" >All</x-dropdown-item>
+    <x-dropdown-item href="/?{{ http_build_query( request()->except('category', 'page') ) }}" :active="request()->routeIs('home')" >All</x-dropdown-item>
     
     
     @foreach ($categories as $cat)
@@ -29,7 +29,7 @@
     {{-- {{ isset($currentCategory) && $currentCategory->id === $cat->id ? "bg-blue-500 text-white" : ''}} --}}
     
         <x-dropdown-item
-            href="/?category={{ $cat->slug }} && {{ http_build_query( request()->except('category') ) }} "
+            href="/?category={{ $cat->slug }} && {{ http_build_query( request()->except('category', 'page') ) }} "
             class="block text-left px-3 text-sm leading-5"
             :active="request()->is('categories/{{ $cat->slug }}')"
         >
