@@ -33,10 +33,10 @@ class Post extends Model
         // search ფილტრი
             $query->when($filters['search'] ?? false, function($query, $search){
 
-                $query
-                ->where('title', 'like', '%' . request('search') . '%' )
-                ->orwhere('body', 'like', '%' . request('search') . '%' );
-
+                $query->where(fn( $query ) => 
+                    $query->where('title', 'like', '%' . request('search') . '%' )
+                          ->orwhere('body', 'like', '%' . request('search') . '%' )
+                );
             });
 
         // category ფილტრი
