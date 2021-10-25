@@ -42,8 +42,10 @@ class Post extends Model
         // category ფილტრი
             $query->when($filters['category'] ?? false, fn ($query, $category) =>
              // 1) გზა 1
-                $query->whereHas('category', fn ($query) => 
-                    $query->where('slug', $category)
+
+                $query->whereHas('category', fn ($query) => //  მომიძებნე პოსტები რომლებსაც აქვთ კატეგორია
+                    $query->where('slug', $category)  // კონკრეტულად ის პოსტებირომელთა კატეგორიის slug == იუზერის მმონიშნულ კატეგორიას
+
                 )
             
              // 2) გზა 2 
@@ -52,6 +54,15 @@ class Post extends Model
                 // ->where('categories.slug', $category)
 
             );   
+
+            // author ფილტრი
+            $query->when($filters['author'] ?? false, fn ($query, $author) =>
+            // 1) გზა 1
+               $query->whereHas('author', fn ($query) => 
+                   $query->where('username', $author)
+               )
+
+           );
                 
     }
 

@@ -29,7 +29,7 @@
     {{-- {{ isset($currentCategory) && $currentCategory->id === $cat->id ? "bg-blue-500 text-white" : ''}} --}}
     
         <x-dropdown-item
-            href="/?category={{ $cat->slug }}"
+            href="/?category={{ $cat->slug }} && {{ http_build_query( request()->except('category') ) }} "
             class="block text-left px-3 text-sm leading-5"
             :active="request()->is('categories/{{ $cat->slug }}')"
         >
