@@ -29,13 +29,30 @@ class Post extends Model
     // კონტროლერში გამოძახებული ფილტერ მეთოდია
     public function scopeFilter ($query, array $filters)
     {
-        // ჯერ ვამოწმებთ ინფუთის ველიუს და შემდეგ ვეძებთ ბაზაში დაწერილი ლოგიკის მიხედვით 
-        if( isset( $filters['search'] ) ){
-             $query
+         
+        // search ფილტრი
+            $query->when($filters['search'] ?? false, function($query, $search){
+
+                $query
                 ->where('title', 'like', '%' . request('search') . '%' )
                 ->orwhere('body', 'like', '%' . request('search') . '%' );
-            }
-         
+
+            });
+
+        // category ფილტრი
+            $query->when($filters['category'] ?? false, fn ($query, $category) =>
+             // 1) გზა 1
+                $query->whereHas('category', fn ($query) => 
+                    $query->where('slug', $category)
+                )
+            
+             // 2) გზა 2 
+                // $query
+                // ->whereColumn('categories.id', 'posts.category_id')
+                // ->where('categories.slug', $category)
+
+            );   
+                
     }
 
 }

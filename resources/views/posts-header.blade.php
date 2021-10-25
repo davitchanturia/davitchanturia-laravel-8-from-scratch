@@ -30,16 +30,17 @@
 
 
 
-                {{-- <x-dropdown-item href="/"> all </x-dropdown-item> --}}
+                <x-dropdown-item href="/" :active="request()->routeIs('home')" >All</x-dropdown-item>
+
         
                 @foreach ($categories as $cat)
 
                 {{-- {{ isset($currentCategory) && $currentCategory->id === $cat->id ? "bg-blue-500 text-white" : ''}} --}}
 
                     <x-dropdown-item
-                        href="/categories/{{$cat->slug}}"
+                        href="/?category={{ $cat->slug }}"
                         class="block text-left px-3 text-sm leading-5"
-                        :active="isset($currentCategory) && $currentCategory->id === $cat->id"
+                        :active="request()->is('categories/{{ $cat->slug }}')"
                     >
                         {{ ucwords($cat->name) }} 
                     </x-dropdown-item>
