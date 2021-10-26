@@ -5,6 +5,7 @@ use App\Models\User;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -21,9 +22,9 @@ class RegisterController extends Controller
         // მომხმარებლის შეტანილ ინფოს ვინახავთ 
         $attributes = request()->validate([
             'name' =>  ['required', 'max:255', 'min:3'],
-            'username' =>  ['required', 'max:255', 'min:3'],
+            'username' =>  ['required', 'max:255', 'min:3', Rule::unique('users', 'username')],
             'password' => ['required', 'max:255', 'min:3'],
-            'email' => ['required', 'email', 'max:255', 'min:3']
+            'email' => ['required', 'email', 'max:255', 'min:3', Rule::unique('users', 'email')]
         ]);
 
 
