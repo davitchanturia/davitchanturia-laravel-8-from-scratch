@@ -30,6 +30,9 @@ class RegisterController extends Controller
 
         // ვინახავთ ბაზაში
         User::create($attributes);
+
+        // ვინახავთ სესიაში, flash უზრუნველყოფს რომ შენახული იყოს შემდეგ რექუესთამდე
+        session()->flash('success', 'your account has been created');
         
         // იუზერს ვაბრუნებთ მთავარ გვერდზე
         return redirect('/');
