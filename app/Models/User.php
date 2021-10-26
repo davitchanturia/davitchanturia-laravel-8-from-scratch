@@ -43,4 +43,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    // ამ მეთოდის საშუალებით იუზერის მიერ შეყვანილ პაროლს ვაძლევთ ისეთ სახეს რო ბაზაშ მისი გარჩევა ვერ მოხერხდეს
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password); // bcrpt($password) ნაცვლად შეგვძლია დავწეროტ dato და ყველა პაროლს შეინახავს dato-ს სახელით
+    }
+
+
 }
+
+
