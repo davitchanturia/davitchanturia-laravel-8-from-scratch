@@ -24,16 +24,21 @@ use Illuminate\Support\Facades\File;
 // }
 
 
+Route::get('/', [Postcontroller::class, 'index'])->name('home');  // მთავარი გვერდის მოთხოვნა
 
-Route::get('/', [Postcontroller::class, 'index'])->name('home'); 
+Route::get('posts/{post:slug}' , [Postcontroller::class, 'show']);  // კონკრეტული პოსტის მოთხოვნა
 
-Route::get('posts/{post:slug}' , [Postcontroller::class, 'show']);
 
-Route::get( 'register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post( 'register', [RegisterController::class, 'store'])->middleware('guest');
+Route::get( 'register', [RegisterController::class, 'create'])->middleware('guest');  // რეგისტრაციის გვერდის მოთხოვნა
+Route::post( 'register', [RegisterController::class, 'store'])->middleware('guest');  // ახალი იუზერის რეგისტრაციის მოთხოვნა
 
-Route::get( 'login', [SessionsControler::class, 'create'])->middleware('guest');
-Route::post( 'logout', [SessionsControler::class, 'destroy'])->middleware('auth');
+
+Route::get( 'login', [SessionsControler::class, 'create'])->middleware('guest');  // ლოგინ გვერდის მოთხოვნა
+Route::post( 'sessions', [SessionsControler::class, 'store'])->middleware('guest');  // იუზერის მიერ დალოგინების მოთხოვნა
+
+
+Route::post( 'logout', [SessionsControler::class, 'destroy'])->middleware('auth');  // იუზერის მიერ გამოსვლის მოთხოვნა
+
 
 
 
