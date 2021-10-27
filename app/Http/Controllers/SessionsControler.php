@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class SessionsControler extends Controller
 {
+
+    public function create ()
+    {
+        return view('sessions.create');
+    }
+
+
     public function destroy ()
     {
         // გამოსვლა
