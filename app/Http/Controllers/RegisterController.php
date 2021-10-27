@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-
-
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -29,11 +27,14 @@ class RegisterController extends Controller
 
 
         // ვინახავთ ბაზაში
-        User::create($attributes);
+        $user = User::create($attributes);
 
         // ვინახავთ სესიაში, flash უზრუნველყოფს რომ შენახული იყოს შემდეგ რექუესთამდე
         session()->flash('success', 'your account has been created');
-        
+
+        // log in დარეგისტრირებული იუზერისთვის პირდაპირ
+        auth()->login($user);
+
         // იუზერს ვაბრუნებთ მთავარ გვერდზე
         return redirect('/');
     }

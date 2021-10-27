@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Postcontroller;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionsControler;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -28,9 +29,10 @@ Route::get('/', [Postcontroller::class, 'index'])->name('home');
 
 Route::get('posts/{post:slug}' , [Postcontroller::class, 'show']);
 
-Route::get( 'register', [RegisterController::class, 'create']);
-Route::post( 'register', [RegisterController::class, 'store']);
+Route::get( 'register', [RegisterController::class, 'create'])->middleware('guest');
+Route::post( 'register', [RegisterController::class, 'store'])->middleware('guest');
 
+Route::post( 'logout', [SessionsControler::class, 'destroy']);
 
 
 
