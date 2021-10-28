@@ -54,7 +54,19 @@
                         <p>{{$post->body}}</p>
                     </div>
                 </div>
+
+                <section class="col-span-8 col-start-5 space-y-6">
+
+                    <!-- პოსტის კომენტარები -->
+                    <x-post-comment />
+                    
+                </section>
             </article>
+
+            
+
+
+
         </main>
 
     </section>

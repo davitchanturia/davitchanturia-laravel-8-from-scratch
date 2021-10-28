@@ -21,8 +21,6 @@ class SessionsControler extends Controller
             'password' => 'required'
         ]);
 
-        dd(auth()->attempt($attrs));
-
         if (auth()->attempt($attrs)) {
             
             session()->flash('success', 'welcome back');
