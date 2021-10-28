@@ -58,8 +58,14 @@
                 <section class="col-span-8 col-start-5 space-y-6">
 
                     <!-- პოსტის კომენტარები -->
-                    <x-post-comment />
                     
+                    @foreach ($post->comments as $comment)
+
+                        <x-post-comment :comm="$comment"/>
+
+                    @endforeach
+
+
                 </section>
             </article>
 

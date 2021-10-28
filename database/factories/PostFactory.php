@@ -29,7 +29,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence(),
             'slug' => $this->faker->slug(),
             'excerpt' => $this->faker->sentence(),
-            'body' => $this->faker->paragraph(),
+            'body' => $this->faker->paragraph()
 
         ];
     }
