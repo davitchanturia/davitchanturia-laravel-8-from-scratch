@@ -30,7 +30,7 @@ class CreateCommentsTable extends Migration
             // $table->foreign('user_id')->references('id')->ong('users')->cascadeOnDelete();
         
         });
-    }sadasdxzzxxzcc
+    }
 
     /**
      * Reverse the migrations.
