@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,47 +9,47 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+	use HasApiTokens, HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
-    protected $guarded = [];
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var string[]
+	 */
+	protected $guarded = [];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+	/**
+	 * The attributes that should be hidden for serialization.
+	 *
+	 * @var array
+	 */
+	protected $hidden = [
+		'password',
+		'remember_token',
+	];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array
+	 */
+	protected $casts = [
+		'email_verified_at' => 'datetime',
+	];
 
+	public function posts()
+	{
+		return $this->hasMany(Post::class);
+	}
 
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }
+	public function comments()
+	{
+		return $this->hasMany(Comment::class);
+	}
 
-    // ამ მეთოდის საშუალებით იუზერის მიერ შეყვანილ პაროლს ვაძლევთ ისეთ სახეს რო ბაზაშ მისი გარჩევა ვერ მოხერხდეს
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password); // bcrpt($password) ნაცვლად შეგვძლია დავწეროტ dato და ყველა პაროლს შეინახავს dato-ს სახელით
-    }
-
-
+	// ამ მეთოდის საშუალებით იუზერის მიერ შეყვანილ პაროლს ვაძლევთ ისეთ სახეს რო ბაზაშ მისი გარჩევა ვერ მოხერხდეს
+	public function setPasswordAttribute($password)
+	{
+		$this->attributes['password'] = bcrypt($password); // bcrpt($password) ნაცვლად შეგვძლია დავწეროტ dato და ყველა პაროლს შეინახავს dato-ს სახელით
+	}
 }
-
-
