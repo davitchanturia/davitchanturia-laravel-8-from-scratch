@@ -5,6 +5,7 @@ use App\Http\Controllers\Postcontroller;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SessionsControler;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\NewsletterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,29 +34,4 @@ Route::post('sessions', [SessionsControler::class, 'store'])->middleware('guest'
 
 Route::post('logout', [SessionsControler::class, 'destroy'])->middleware('auth');  // იუზერის მიერ გამოსვლის მოთხოვნა
 
-Route::post('newsletter', function () {
-	request()->validate(['email' => 'required|email']);
-
-	$client = new \MailchimpMarketing\ApiClient();
-
-	$client->setConfig([
-		'apiKey' => config('services.mailchimp.key'),
-		'server' => 'us5',
-	]);
-
-	try
-	{
-		$response = $client->lists->addListMember('b00613530f', [
-			'email_address' => request('email'),
-			'status'        => 'subscribed',
-		]);
-	}
-	catch (\exception $e)
-	{
-		\Illuminate\Validation\ValidationException::withMessages([
-			'email' => 'this email could not be added',
-		]);
-	}
-
-	return redirect('/')->with('success', 'now you are signed up for our newsletter');
-});
+Route::post('newsletter', [NewsletterController::class, 'check']);  // როცა იუზერისგან მოდის მეილის newsletter გამოწერის მოთხოვნა
