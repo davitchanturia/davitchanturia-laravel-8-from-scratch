@@ -24,7 +24,7 @@
             @enderror
          </div>
 
-         <div class="mt-2 flex justify-end mt-7 border-t py-5">
+         <div class="mt-2 flex justify-end border-t py-5">
              <button type="submit" class="bg-blue-400 px-7 py-1 text-white rounded-xl font-semibold hover:bg-blue-200 hover:text-black"> Post </button>
          </div>
 

@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Postcontroller;
 use App\Http\Controllers\CommentController;
@@ -35,21 +33,29 @@ Route::post('sessions', [SessionsControler::class, 'store'])->middleware('guest'
 
 Route::post('logout', [SessionsControler::class, 'destroy'])->middleware('auth');  // იუზერის მიერ გამოსვლის მოთხოვნა
 
-// Route::get('categories/{category:slug}', function(Category $category){
+Route::post('newsletter', function () {
+	request()->validate(['email' => 'required|email']);
 
-//     return view('posts', [
-//         'posts' => $category->posts,
-//         "currentCategory" => $category,
-//         "categories" => Category::all()
-//     ]);
+	$client = new \MailchimpMarketing\ApiClient();
 
-// });
+	$client->setConfig([
+		'apiKey' => config('services.mailchimp.key'),
+		'server' => 'us5',
+	]);
 
-// Route::get('authors/{author:username}', function(User $author){
+	try
+	{
+		$response = $client->lists->addListMember('b00613530f', [
+			'email_address' => request('email'),
+			'status'        => 'subscribed',
+		]);
+	}
+	catch (\exception $e)
+	{
+		\Illuminate\Validation\ValidationException::withMessages([
+			'email' => 'this email could not be added',
+		]);
+	}
 
-//     return view('posts.index', [
-//         'posts' => $author->posts,
-//         // "categories" => Category::all()
-//     ]);
-
-// });
+	return redirect('/')->with('success', 'now you are signed up for our newsletter');
+});
