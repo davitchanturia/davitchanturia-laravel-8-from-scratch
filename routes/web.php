@@ -36,4 +36,5 @@ Route::post('logout', [SessionsControler::class, 'destroy'])->middleware('auth')
 
 Route::post('newsletter', [NewsletterController::class, 'check']);  // როცა იუზერისგან მოდის მეილის newsletter გამოწერის მოთხოვნა
 
-Route::get('admin/posts/create', [Postcontroller::class, 'create'])->middleware('admin');
+Route::get('admin/posts/create', [Postcontroller::class, 'create'])->middleware('admin');  // ადმინის მიერ პოსტის შექმნის ფეიჯზე მოთხოვნა
+Route::post('admin/posts', [Postcontroller::class, 'store'])->middleware('admin');
