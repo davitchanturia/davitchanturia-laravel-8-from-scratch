@@ -35,3 +35,5 @@ Route::post('sessions', [SessionsControler::class, 'store'])->middleware('guest'
 Route::post('logout', [SessionsControler::class, 'destroy'])->middleware('auth');  // იუზერის მიერ გამოსვლის მოთხოვნა
 
 Route::post('newsletter', [NewsletterController::class, 'check']);  // როცა იუზერისგან მოდის მეილის newsletter გამოწერის მოთხოვნა
+
+Route::get('admin/posts/create', [Postcontroller::class, 'create'])->middleware('admin');
