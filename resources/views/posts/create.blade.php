@@ -1,9 +1,11 @@
 <x-layout>
 
     <section class="px-6 py-8">
+
+        <h1 class="capitalize text-center font-semibold text-xl">publish new post</h1>
         
-        <form action="/admin/posts" method="post" 
-              class="border border-gray-200 p-6 rounded-xl max-w-md m-auto">
+        <form action="/admin/posts" method="post" enctype="multipart/form-data"
+              class="border border-gray-200 p-6 rounded-xl mt-7 max-w-md m-auto">
             @csrf
 
             {{-- title --}}
@@ -53,6 +55,17 @@
             @error('excerpt')
                 <p class="text-red-500 text-xs mt-1"> {{ $message }} </p>
             @enderror
+
+            {{-- image --}}
+
+            <label for="thumbnail"
+                   class="block mb-2 uppercase font-bold text-xs text-gray-700 mt-6">
+                   Thumbnail
+            </label>
+            
+            <input type="file" 
+                   name="thumbnail" 
+                   class="w-full border border-gray-400 p-2">
 
 
             {{-- body --}}

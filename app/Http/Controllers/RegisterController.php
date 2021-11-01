@@ -16,6 +16,7 @@ class RegisterController extends Controller
 	// ამ მეთოდით ვქმნით იუზერს ანუ ვასაბმითებთ ფორმას
 	public function store()
 	{
+
 		// მომხმარებლის შეტანილ ინფოს ვინახავთ
 		$attributes = request()->validate([
 			'name'     => ['required', 'max:255', 'min:3'],
