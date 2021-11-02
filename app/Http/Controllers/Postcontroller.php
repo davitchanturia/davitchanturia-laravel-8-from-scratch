@@ -25,36 +25,6 @@ class Postcontroller extends Controller
 		]);
 	}
 
-	// გამოაქვს პოსტის შესაქმნელი ფორმა
-	public function create()
-	{
-		return view('posts.create');
-	}
 
-	// პოსტის შექმნა ადმინის მიერ
-	public function store()
-	{
 
-		
-		// პოსტის ვალიდაცია
-		$attributes = request()->validate([
-			'title'          => ['required'],
-			'thumbnail'      => ['required', 'image'],
-			'slug'           => ['required', Rule::unique('posts', 'slug')],
-			'excerpt'        => ['required'],
-			'body'           => ['required'],
-			'category_id'    => ['required', Rule::exists('categories', 'id')],
-		]);
-
-		// ვალიდაცია გავლილ პოსტს ვუმატებთ იუზერ აიდის
-		$attributes['user_id'] = auth()->id();
-
-		$attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
-
-		// ვქმნით პოსტს
-		Post::create($attributes);
-
-		return redirect('/');
-
-	}
 }

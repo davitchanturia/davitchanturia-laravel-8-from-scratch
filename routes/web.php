@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Postcontroller;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SessionsControler;
 use App\Http\Controllers\RegisterController;
@@ -36,5 +37,11 @@ Route::post('logout', [SessionsControler::class, 'destroy'])->middleware('auth')
 
 Route::post('newsletter', [NewsletterController::class, 'check']);  // როცა იუზერისგან მოდის მეილის newsletter გამოწერის მოთხოვნა
 
-Route::get('admin/posts/create', [Postcontroller::class, 'create'])->middleware('admin');  // ადმინის მიერ პოსტის შექმნის ფეიჯზე მოთხოვნა
-Route::post('admin/posts', [Postcontroller::class, 'store'])->middleware('admin');
+//admin
+
+Route::get('admin/posts', [AdminController::class, 'index'])->middleware('admin');  //ადმინის მიერ დაშბორდის გამოტანა სადაც ყველა პოსტი ცხრილის სახითაა
+Route::post('admin/posts', [AdminController::class, 'store'])->middleware('admin');  // ადმინის მიერ პოსტის შექმნის მოთხოვნა
+Route::get('admin/posts/create', [AdminController::class, 'create'])->middleware('admin');  // ადმინის მიერ პოსტის შექმნის ფეიჯზე მოთხოვნა
+Route::get('admin/posts/{post}/edit', [AdminController::class, 'edit'])->middleware('admin');   //ადმინის მიერ დაშბორდის ედით ფეიჯის გამოტანა
+Route::patch('admin/posts/{post}', [AdminController::class, 'update'])->middleware('admin'); //ადმინის მიერ დაედითებული პოსტის განახლება
+Route::delete('admin/posts/{post}', [AdminController::class, 'destroy'])->middleware('admin');  //ადმინის მიერ  პოსტის წაშლა

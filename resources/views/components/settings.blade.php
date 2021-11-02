@@ -8,21 +8,18 @@
     
     <div class="flex">
 
-         <aside class="w-48 mt-7" >
+        <aside class="w-48 mt-7 flex-shrink-0" >
              <h4 class="font-semibold mb-3">links</h4>
              <ul>
                  <li> <a href="/admin/posts/create" class=" {{ request()->is('admin/posts/create') ? 'text-blue-400' : '' }}">New Post</a> </li>
-                 <li> <a href="/admin/dashboard">Dashboard</a> </li>
+                 <li> <a href="/admin/posts" class=" {{ request()->is('admin/posts') ? 'text-blue-400' : '' }}">All Posts</a> </li>
              </ul>
-         </aside>
+        </aside>
 
-
-         <main class="flex-1">
+        <main class="flex-1">
              {{$slot}}
-         </main>
-         
-
-   </div>
+        </main>    
+    </div>
 
 
 </section>
