@@ -10,7 +10,7 @@
                 @csrf
 
                 <x-form.input name="email"/>
-                <x-form.input name="password"/>
+                <x-form.input name="password" type="password"/>
 
                 <x-form.button>log in</x-form.button>
 

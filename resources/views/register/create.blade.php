@@ -11,8 +11,8 @@
 
                 <x-form.input name="name"/>
                 <x-form.input name="username"/>
-                <x-form.input name="username"/>
-                <x-form.input name="password"/>
+                <x-form.input name="email"/>
+                <x-form.input name="password" type="password"/>
 
 
                 <x-form.button>submit</x-form.button>

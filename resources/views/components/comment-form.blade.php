@@ -3,7 +3,7 @@
 @auth
       <form action="/posts/{{$commy->slug}}/comments" 
         method="post" 
-        class="border border-gray-300 p-6 rounded-xl ">
+        class="border border-gray-300 p-6 rounded-xl mt-20">
        @csrf
 
          <div class="flex space-x-4 items-center" >
