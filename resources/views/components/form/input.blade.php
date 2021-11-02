@@ -6,7 +6,7 @@
 
      <input type="{{$type}}" 
             name="{{$name}}" 
-            class="border border-gray-400 p-2 w-full" 
+            class="border border-gray-200 rounded p-2 w-full" 
             value="{{ old($name) }}">
 
      <x-form.error name="{{$name}}"/>

@@ -1,3 +1,4 @@
+@props(['active' => false])
 
 @php
 
@@ -11,7 +12,7 @@
 @endphp
 
 
-<a href="{{ $href }}" class="{{ $classes }}">
+<a {{ $attributes([ 'class' => $classes, ]) }} >
 
     {{ $slot }}
 
