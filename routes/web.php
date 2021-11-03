@@ -27,7 +27,6 @@ Route::post('posts/{post:slug}/comments', [CommentController::class, 'store']); 
 Route::middleware('can:guest')->group(function () {
     Route::get('register', [RegisterController::class, 'create']);  // რეგისტრაციის გვერდის მოთხოვნა
     Route::post('register', [RegisterController::class, 'store']);  // ახალი იუზერის რეგისტრაციის მოთხოვნა
-
 });
 
 Route::middleware('can:guest')->group(function () {

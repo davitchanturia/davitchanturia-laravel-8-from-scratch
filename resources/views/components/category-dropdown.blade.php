@@ -35,14 +35,7 @@
         >
             {{ ucwords($cat->name) }} 
         </x-dropdown-item>
-    
-        {{-- <a href="/categories/{{$cat->slug}}" 
-            class="block text-left px-3 text-sm leading-5 
-            hover:bg-blue-300 hover:text-white">
-            {{ isset($currentCategory) && $currentCategory->id === $cat->id ? "bg-blue-500 text-white" : ''}}
-            
-            {{ ucwords($cat->name) }}
-        </a> --}}
+  
     @endforeach
 
 </x-dropdown>

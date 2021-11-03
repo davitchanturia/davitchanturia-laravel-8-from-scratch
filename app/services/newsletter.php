@@ -14,18 +14,15 @@ class newsletter
 
 		$client->setConfig([
 			'apiKey' => config('services.mailchimp.key'),
-			'server' => 'us5',
+			'server' => config('services.mailchimp.server'),
 		]);
 
-		try
-		{
+		try {
 			$response = $client->lists->addListMember(config('services.mailchimp.list.subscribers'), [
 				'email_address' => $email,
 				'status'        => 'subscribed',
 			]);
-		}
-		catch (\exception $e)
-		{
+		} catch (\exception $e) {
 			throw ValidationException::withMessages([
 				'email' => 'this email could not be added',
 			]);
