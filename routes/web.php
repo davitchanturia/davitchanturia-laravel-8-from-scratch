@@ -38,10 +38,11 @@ Route::post('logout', [SessionsControler::class, 'destroy'])->middleware('auth')
 Route::post('newsletter', [NewsletterController::class, 'check']);  // როცა იუზერისგან მოდის მეილის newsletter გამოწერის მოთხოვნა
 
 //admin
-
-Route::get('admin/posts', [AdminController::class, 'index'])->middleware('admin');  //ადმინის მიერ დაშბორდის გამოტანა სადაც ყველა პოსტი ცხრილის სახითაა
-Route::post('admin/posts', [AdminController::class, 'store'])->middleware('admin');  // ადმინის მიერ პოსტის შექმნის მოთხოვნა
-Route::get('admin/posts/create', [AdminController::class, 'create'])->middleware('admin');  // ადმინის მიერ პოსტის შექმნის ფეიჯზე მოთხოვნა
-Route::get('admin/posts/{post}/edit', [AdminController::class, 'edit'])->middleware('admin');   //ადმინის მიერ დაშბორდის ედით ფეიჯის გამოტანა
-Route::patch('admin/posts/{post}', [AdminController::class, 'update'])->middleware('admin'); //ადმინის მიერ დაედითებული პოსტის განახლება
-Route::delete('admin/posts/{post}', [AdminController::class, 'destroy'])->middleware('admin');  //ადმინის მიერ  პოსტის წაშლა
+Route::middleware('can:admin')->group(function () {
+    Route::get('admin/posts', [AdminController::class, 'index']); //ადმინის მიერ დაშბორდის გამოტანა სადაც ყველა პოსტი ცხრილის სახითაა
+    Route::post('admin/posts', [AdminController::class, 'store']); // ადმინის მიერ პოსტის შექმნის მოთხოვნა
+    Route::get('admin/posts/create', [AdminController::class, 'create']); // ადმინის მიერ პოსტის შექმნის ფეიჯზე მოთხოვნა
+    Route::get('admin/posts/{post}/edit', [AdminController::class, 'edit']);  //ადმინის მიერ დაშბორდის ედით ფეიჯის გამოტანა
+    Route::patch('admin/posts/{post}', [AdminController::class, 'update']); //ადმინის მიერ დაედითებული პოსტის განახლება
+    Route::delete('admin/posts/{post}', [AdminController::class, 'destroy']); //ადმინის მიერ  პოსტის წაშლა
+});

@@ -17,11 +17,6 @@ class AdminsOnly
 	 */
 	public function handle(Request $request, Closure $next)
 	{
-		if (auth()->user()?->username !== 'zaxarichi')
-		{
-			abort(403);
-		}
-
-		return $next($request);
+		
 	}
 }
