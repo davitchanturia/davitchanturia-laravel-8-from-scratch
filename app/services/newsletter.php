@@ -18,7 +18,7 @@ class newsletter
 		]);
 
 		try {
-			$response = $client->lists->addListMember(config('services.mailchimp.list.subscribers'), [
+			$client->lists->addListMember(config('services.mailchimp.list.subscribers'), [
 				'email_address' => $email,
 				'status'        => 'subscribed',
 			]);
