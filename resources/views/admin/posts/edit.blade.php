@@ -2,7 +2,7 @@
 
     <x-settings :heading="'Edit Post: '.$post->title">
 
-        <form action="/admin/posts/{{ $post->id }}" method="post" enctype="multipart/form-data"
+        <form action="{{ route('update.post', [$post->id]) }}" method="post" enctype="multipart/form-data"
             class="border border-gray-200 p-6 rounded-xl mt-7 max-w-md m-auto">
             @csrf
             @method('PATCH')

@@ -6,7 +6,7 @@
 
             <h1 class="text-center uppercase  font-bold text-lg">register!</h1>
 
-            <form action="/register" method="post">
+            <form action="{{ route('register') }}" method="post">
                 @csrf
 
                 <x-form.input name="name" />

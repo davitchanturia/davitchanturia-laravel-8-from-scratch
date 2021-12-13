@@ -9,29 +9,28 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
-    }
+	/**
+	 * Register any application services.
+	 *
+	 * @return void
+	 */
+	public function register()
+	{
+	}
 
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        Gate::define('admin', function(User $user) {
-            return $user->username === 'zaxarichi';
-        });
+	/**
+	 * Bootstrap any application services.
+	 *
+	 * @return void
+	 */
+	public function boot()
+	{
+		Gate::define('admin', function (User $user) {
+			return $user->username === 'zaxarichi';
+		});
 
-        Blade::if('admin', function(){
-            return request()->user()->can('admin');
-        });
-    }
+		Blade::if('admin', function () {
+			return request()->user()->can('admin');
+		});
+	}
 }

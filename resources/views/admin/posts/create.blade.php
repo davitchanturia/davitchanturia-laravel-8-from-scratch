@@ -2,7 +2,7 @@
 
     <x-settings heading="Publish New Post"> 
 
-        <form action="/admin/posts" method="post" enctype="multipart/form-data"
+        <form action="{{ route('create.post') }}" method="post" enctype="multipart/form-data"
               class="border border-gray-200 p-6 rounded-xl mt-7 max-w-md m-auto">
             @csrf
          

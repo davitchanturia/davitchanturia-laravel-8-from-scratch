@@ -6,7 +6,7 @@
 
             <h1 class="text-center uppercase  font-bold text-lg">Log In!</h1>
 
-            <form action="/sessions" method="post">
+            <form action="{{ route('login') }}" method="post">
                 @csrf
 
                 <x-form.input name="email" />

@@ -14,6 +14,6 @@ class NewsletterController extends Controller
 
 		$newsletter->subscribe(request('email'));
 
-		return redirect('/')->with('success', 'now you are signed up for our newsletter');
+		return redirect(route('home'))->with('success', 'now you are signed up for our newsletter');
 	}
 }

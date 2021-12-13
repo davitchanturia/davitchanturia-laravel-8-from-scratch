@@ -28,10 +28,10 @@
                         </x-slot>
 
                         @admin
-                        <x-dropdown-item href="/admin/posts/create" :active="request()->is('/admin/posts/create')">New Post
+                        <x-dropdown-item href="{{ route('show.post.create') }}" :active="request()->is('/admin/posts/create')">New Post
                         </x-dropdown-item>
 
-                        <x-dropdown-item href="/admin/posts" :active="request()->is('/admin/posts')"> Dashboard
+                        <x-dropdown-item href="{{ route('dashboard') }}" :active="request()->is('/admin/posts')"> Dashboard
                         </x-dropdown-item>
                         @endadmin
                         <x-dropdown-item href="#" x-data="{}"
@@ -39,7 +39,7 @@
                             Log Out
                         </x-dropdown-item>
 
-                        <form id="logout-form" action="/logout" method="post" class="hidden">
+                        <form id="logout-form" action="{{ route('logout') }}" method="post" class="hidden">
                             @csrf
 
                         </form>
@@ -47,8 +47,8 @@
                     </x-dropdown>
 
                 @else
-                    <a href="/register" class="text-xs font-bold uppercase mr-4">register</a>
-                    <a href="/login" class="text-xs font-bold uppercase">Log In</a>
+                    <a href="{{ route('show.registration') }}" class="text-xs font-bold uppercase mr-4">register</a>
+                    <a href="{{ route('show.login') }}" class="text-xs font-bold uppercase">Log In</a>
                 @endauth
 
 

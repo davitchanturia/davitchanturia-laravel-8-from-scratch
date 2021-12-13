@@ -18,12 +18,15 @@ class newsletter
 			'server' => config('services.mailchimp.server'),
 		]);
 
-		try {
+		try
+		{
 			$client->lists->addListMember(config('services.mailchimp.list.subscribers'), [
 				'email_address' => $email,
 				'status'        => 'subscribed',
 			]);
-		} catch (Exception $e) {
+		}
+		catch (Exception $e)
+		{
 			throw ValidationException::withMessages([
 				'email' => 'this email could not be added',
 			]);

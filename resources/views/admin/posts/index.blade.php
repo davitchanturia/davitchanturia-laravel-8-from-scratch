@@ -16,7 +16,7 @@
                                 @foreach ($posts as $post)
                                     <tr class="bg-white">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            <a href="/posts/{{ $post->slug }}">
+                                            <a href="{{ route('show', [$post->slug]) }}">
                                                 {{ $post->title }}
                                             </a>
                                         </td>
@@ -29,11 +29,11 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <a href="/admin/posts/{{ $post->id }}/edit"
+                                            <a href="{{ route('show.post.edit', [$post->id]) }}
                                                 class="text-green-400 font-semibold hover:text-green-700">Edit</a>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <form action="/admin/posts/{{ $post->id }}" method="post">
+                                            <form action="{{ route('delete.post', [$post->id]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
 
