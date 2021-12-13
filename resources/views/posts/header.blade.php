@@ -6,9 +6,9 @@
     <div class="space-y-2 lg:space-y-0 lg:space-x-4 mt-4">
         <!--  Category -->
         <div class="relative  lg:inline-flex  bg-gray-100 rounded-xl">
-           
-           <x-category-dropdown />
-       
+
+            <x-category-dropdown />
+
         </div>
 
 
@@ -17,16 +17,14 @@
             <form method="GET" action="#">
 
                 {{-- კატეგორიის ცვლილების დროს ვაკეთებთ ჰიდენ ინფუთს და ვინახავთ მის ველიუში მონიშნულ კატეგორიას --}}
-                @if ( request('category') )
+                @if (request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
 
-                <input type="text" 
-                       name="search" 
-                       placeholder="Find something"
-                       class="bg-transparent placeholder-black font-semibold text-sm"
-                       value="{{ request('search') }}">  {{-- ამის საშუალებით სერჩის ინფუთს ეწერება დინამიური ველიუ რომელიც ჩაწერილის ტოლი --}}
-                       
+                <input type="text" name="search" placeholder="Find something"
+                    class="bg-transparent placeholder-black font-semibold text-sm" value="{{ request('search') }}">
+                {{-- ამის საშუალებით სერჩის ინფუთს ეწერება დინამიური ველიუ რომელიც ჩაწერილის ტოლი --}}
+
             </form>
         </div>
     </div>

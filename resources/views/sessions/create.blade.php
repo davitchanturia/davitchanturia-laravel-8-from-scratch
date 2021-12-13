@@ -4,13 +4,13 @@
 
         <main class="max-w-lg mx-auto mt-10 bg-gray-100 border border-gray-200 p-7 rounded-xl">
 
-            <h1 class="text-center uppercase  font-bold text-lg" >Log In!</h1>
+            <h1 class="text-center uppercase  font-bold text-lg">Log In!</h1>
 
             <form action="/sessions" method="post">
                 @csrf
 
-                <x-form.input name="email"/>
-                <x-form.input name="password" type="password"/>
+                <x-form.input name="email" />
+                <x-form.input name="password" type="password" />
 
                 <x-form.button>log in</x-form.button>
 
