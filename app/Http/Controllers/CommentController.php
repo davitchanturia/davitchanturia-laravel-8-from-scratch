@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentPostRequest;
+use App\Models\Comment;
 use App\Models\Post;
 
 class CommentController extends Controller
 {
-	public function store(Post $post)
+	public function store(CommentPostRequest $request, Post $post)
 	{
-		request()->validate([
-			'body' => 'required',
-		]);
+		$attributes = $request->validated();
 
-		$post->comments()->create([
-			'user_id' => request()->user()->id,
-			'body'    => request('body'),
-		]);
+		$attributes['post_id'] = $post->id;
+		$attributes['user_id'] = auth()->user()->id;
+
+		Comment::create($attributes);
 
 		return back();
 	}

@@ -45,9 +45,9 @@ class AdminController extends Controller
         ]);
     }
 
-    public function update(Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
-        $attributes = $this->ValidatePost($post);
+        $attributes = $request->validated($post);
 
         if (isset($attributes['thumbnail'])) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
