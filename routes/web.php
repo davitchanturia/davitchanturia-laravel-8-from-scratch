@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Postcontroller;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SessionsControler;
@@ -19,9 +19,9 @@ use App\Http\Controllers\NewsletterController;
 |
 */
 
-Route::get('/', [Postcontroller::class, 'index'])->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
 
-Route::get('posts/{post:slug}', [Postcontroller::class, 'show']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::post('posts/{post:slug}/comments', [CommentController::class, 'store']);
 
 Route::get('register', [RegisterController::class, 'create']);
@@ -33,7 +33,7 @@ Route::post('sessions', [SessionsControler::class, 'store']);
 
 Route::post('logout', [SessionsControler::class, 'destroy'])->middleware('auth');
 
-Route::post('newsletter', [NewsletterController::class, 'check']);  // subscribe request in newsletter
+Route::post('newsletter', [NewsletterController::class, 'check']);
 
 //admin
 Route::middleware('can:admin')->group(function () {
