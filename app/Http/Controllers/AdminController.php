@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\StorePostRequest;
 
 class AdminController extends Controller
 {
@@ -23,9 +24,9 @@ class AdminController extends Controller
         ]);
     }
 
-    public function store()
+    public function store(StorePostRequest $request)
     {
-        $attributes = $this->ValidatePost();
+        $attributes = $request->validated();
 
         $attributes['user_id'] = auth()->id();
         // save foto in thumbnail folder
@@ -62,23 +63,5 @@ class AdminController extends Controller
         $post->delete();
 
         return back()->with('success', 'Post is deleted');
-    }
-
-
-    protected function ValidatePost(?Post $post = null): array
-    {
-        // parameter is null but if we will set parameter it will create new post
-        $post ??= new Post();
-
-        $attributes = request()->validate([
-            'title'          => ['required'],
-            'thumbnail'      => $post->exists() ? ['image'] : ['required', 'image'],  //ვამოწმებთ თუ ბაზაში არსბეობს პოსტი მხოლოდ ფაილის ტიპი მითხოვოს სხვა შემთხვევაში ინფუთი სავალდებულო ხდება და ტიპიც აუცილებელია
-            'slug'           => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
-            'excerpt'        => ['required'],
-            'body'           => ['required'],
-            'category_id'    => ['required', Rule::exists('categories', 'id')],
-        ]);
-
-        return $attributes;
     }
 }
