@@ -1,6 +1,7 @@
 <?php
 
 namespace App\View\Components;
+
 use App\Models\Category;
 
 
@@ -26,7 +27,8 @@ class CategoryDropdown extends Component
     public function render()
     {
         return view('components.category-dropdown', [
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'currentCategory' => Category::firstwhere('slug', request('category'))
         ]);
     }
 }

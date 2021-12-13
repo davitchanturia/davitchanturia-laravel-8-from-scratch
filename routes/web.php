@@ -24,15 +24,11 @@ Route::get('/', [Postcontroller::class, 'index'])->name('home');  // მთა�
 Route::get('posts/{post:slug}', [Postcontroller::class, 'show']);  // კონკრეტული პოსტის მოთხოვნა
 Route::post('posts/{post:slug}/comments', [CommentController::class, 'store']);  // პოსტის კომენტარის შენახვ ბაზაში
 
-Route::middleware('can:guest')->group(function () {
-    Route::get('register', [RegisterController::class, 'create']);  // რეგისტრაციის გვერდის მოთხოვნა
-    Route::post('register', [RegisterController::class, 'store']);  // ახალი იუზერის რეგისტრაციის მოთხოვნა
-});
+Route::get('register', [RegisterController::class, 'create']);  // რეგისტრაციის გვერდის მოთხოვნა
+Route::post('register', [RegisterController::class, 'store']);  // ახალი იუზერის რეგისტრაციის მოთხოვნა
 
-Route::middleware('can:guest')->group(function () {
-    Route::get('login', [SessionsControler::class, 'create']);  // ლოგინ გვერდის მოთხოვნა
-    Route::post('sessions', [SessionsControler::class, 'store']);  // იუზერის მიერ დალოგინების მოთხოვნა
-});
+Route::get('login', [SessionsControler::class, 'create']);  // ლოგინ გვერდის მოთხოვნა
+Route::post('sessions', [SessionsControler::class, 'store']);  // იუზერის მიერ დალოგინების მოთხოვნა
 
 
 Route::post('logout', [SessionsControler::class, 'destroy'])->middleware('auth');  // იუზერის მიერ გამოსვლის მოთხოვნა

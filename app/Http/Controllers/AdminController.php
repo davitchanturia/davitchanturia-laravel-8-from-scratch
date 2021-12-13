@@ -13,10 +13,9 @@ class AdminController extends Controller
         return view('admin.posts.index', [
             'posts' => Post::paginate(50)
         ]);
-        
     }
 
-     // გამოაქვს პოსტის შესაქმნელი ფორმა
+    // გამოაქვს პოსტის შესაქმნელი ფორმა
     public  function create()
     {
         return view('admin.posts.create');
@@ -24,34 +23,33 @@ class AdminController extends Controller
 
     // პოსტის შექმნა ადმინის მიერ
     public function store()
-	{
- 
-		// პოსტის ვალიდაცია
-		$attributes = $this->ValidatePost();
+    {
 
-		// ვალიდაცია გავლილ პოსტს ვუმატებთ იუზერ აიდის
-		$attributes['user_id'] = auth()->id();
+        // პოსტის ვალიდაცია
+        $attributes = $this->ValidatePost();
+
+        // ვალიდაცია გავლილ პოსტს ვუმატებთ იუზერ აიდის
+        $attributes['user_id'] = auth()->id();
         //ფოტოს ვინახავთ სთორიჯში thumbnail ფოლდერში
-		$attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
-		// ვქმნით პოსტს
-		Post::create($attributes);
+        // ვქმნით პოსტს
+        Post::create($attributes);
 
-		return redirect('/')->with('success', 'post created succesfully!');
-
-	}
+        return redirect('/')->with('success', 'post created succesfully!');
+    }
 
     public  function edit(Post $post)
     {
         return view('admin.posts.edit', ['post' => $post]);
     }
-    
+
     public function update(Post $post)
     {
-        
-      // პოსტის ვალიდაცია
-		$attributes = $this->ValidatePost($post);
-        
+
+        // პოსტის ვალიდაცია
+        $attributes = $this->ValidatePost($post);
+
         // თუ შეტანილია ფაილის ასატვირთში რამე მხოლოდ მაგ შემთხვევაში შეინახოს სთორიჯში
         if (isset($attributes['thumbnail'])) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
@@ -65,7 +63,7 @@ class AdminController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        
+
         return back()->with('success', 'Post is deleted');
     }
 
@@ -77,13 +75,13 @@ class AdminController extends Controller
         $post ??= new Post();
 
         $attributes = request()->validate([
-			'title'          => ['required'],
-			'thumbnail'      => $post->exists() ? ['image'] : ['required', 'image'],  //ვამოწმებთ თუ ბაზაში არსბეობს პოსტი მხოლოდ ფაილის ტიპი მითხოვოს სხვა შემთხვევაში ინფუთი სავალდებულო ხდება და ტიპიც აუცილებელია
-			'slug'           => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
-			'excerpt'        => ['required'],
-			'body'           => ['required'],
-			'category_id'    => ['required', Rule::exists('categories', 'id')],
-		]);
+            'title'          => ['required'],
+            'thumbnail'      => $post->exists() ? ['image'] : ['required', 'image'],  //ვამოწმებთ თუ ბაზაში არსბეობს პოსტი მხოლოდ ფაილის ტიპი მითხოვოს სხვა შემთხვევაში ინფუთი სავალდებულო ხდება და ტიპიც აუცილებელია
+            'slug'           => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
+            'excerpt'        => ['required'],
+            'body'           => ['required'],
+            'category_id'    => ['required', Rule::exists('categories', 'id')],
+        ]);
 
         return $attributes;
     }
