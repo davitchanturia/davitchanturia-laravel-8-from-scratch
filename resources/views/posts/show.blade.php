@@ -59,7 +59,7 @@
                     <x-comment-form :commy="$post" />
 
 
-                    <!-- პოსტის კომენტარები -->
+                    <!-- post comments -->
 
                     @foreach ($post->comments as $comment)
 

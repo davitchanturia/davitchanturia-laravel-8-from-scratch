@@ -15,25 +15,19 @@ class AdminController extends Controller
         ]);
     }
 
-    // გამოაქვს პოსტის შესაქმნელი ფორმა
     public  function create()
     {
         return view('admin.posts.create');
     }
 
-    // პოსტის შექმნა ადმინის მიერ
     public function store()
     {
-
-        // პოსტის ვალიდაცია
         $attributes = $this->ValidatePost();
 
-        // ვალიდაცია გავლილ პოსტს ვუმატებთ იუზერ აიდის
         $attributes['user_id'] = auth()->id();
-        //ფოტოს ვინახავთ სთორიჯში thumbnail ფოლდერში
+        // save foto in thumbnail folder
         $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
-        // ვქმნით პოსტს
         Post::create($attributes);
 
         return redirect('/')->with('success', 'post created succesfully!');
@@ -46,11 +40,8 @@ class AdminController extends Controller
 
     public function update(Post $post)
     {
-
-        // პოსტის ვალიდაცია
         $attributes = $this->ValidatePost($post);
 
-        // თუ შეტანილია ფაილის ასატვირთში რამე მხოლოდ მაგ შემთხვევაში შეინახოს სთორიჯში
         if (isset($attributes['thumbnail'])) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
         }
@@ -70,8 +61,7 @@ class AdminController extends Controller
 
     protected function ValidatePost(?Post $post = null): array
     {
-        //პარამეტრად ვატანთ ნოლს მაგრამ ქვევით წერია რო თუ გადავცემთ პარამეტრს მეთოდის გამოძახებისას 
-        //მიენიჭება გადაცემული მნიშვნელობა მაგრამ თუ არ გადავცემთ შექმნის ახალ პოსტს
+        // parameter is null but if we will set parameter it will create new post
         $post ??= new Post();
 
         $attributes = request()->validate([

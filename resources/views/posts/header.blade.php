@@ -16,15 +16,13 @@
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
             <form method="GET" action="#">
 
-                {{-- კატეგორიის ცვლილების დროს ვაკეთებთ ჰიდენ ინფუთს და ვინახავთ მის ველიუში მონიშნულ კატეგორიას --}}
+                {{-- during category request we are saving value in hidden input --}}
                 @if (request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
 
                 <input type="text" name="search" placeholder="Find something"
                     class="bg-transparent placeholder-black font-semibold text-sm" value="{{ request('search') }}">
-                {{-- ამის საშუალებით სერჩის ინფუთს ეწერება დინამიური ველიუ რომელიც ჩაწერილის ტოლი --}}
-
             </form>
         </div>
     </div>

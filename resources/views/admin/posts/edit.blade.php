@@ -38,7 +38,6 @@
 
             </div>
 
-            {{-- button --}}
             <x-form.button>Update</x-form.button>
         </form>
 

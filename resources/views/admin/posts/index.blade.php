@@ -1,7 +1,7 @@
 <x-layout>
 
 
-    {{-- dashboard ცხრილი --}}
+    {{-- dashboard table --}}
 
     <x-settings heading="Manage Posts">
 
