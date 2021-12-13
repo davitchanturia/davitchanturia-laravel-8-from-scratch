@@ -9,12 +9,12 @@ use Illuminate\Validation\ValidationException;
 class SessionsControler extends Controller
 {
 
-    public function create ()
+    public function create()
     {
         return view('sessions.create');
     }
 
-    public function store ()
+    public function store()
     {
         $attrs = Request()->validate([
             'email' => 'required|email',
@@ -22,23 +22,17 @@ class SessionsControler extends Controller
         ]);
 
         if (auth()->attempt($attrs)) {
-            
+
             session()->flash('success', 'welcome back');
 
             return redirect('/');
-        }else{
+        } else {
             throw ValidationException::withMessages(['email' => 'your provided credentials could not be found']);
         }
-
-
-
-        // return back()
-        //     ->withInput()
-        //     ->withErrors(['email' => 'your provided credentials could not be found']);
     }
 
 
-    public function destroy ()
+    public function destroy()
     {
         // გამოსვლა
         auth()->logout();

@@ -32,43 +32,45 @@ class Post extends Model
 
 
     // კონტროლერში გამოძახებული ფილტერ მეთოდია
-    public function scopeFilter ($query, array $filters)
+    public function scopeFilter($query, array $filters)
     {
-         
-        // search ფილტრი
-            $query->when($filters['search'] ?? false, function($query, $search){
 
-                $query->where(fn( $query ) => 
-                    $query->where('title', 'like', '%' . request('search') . '%' )
-                          ->orwhere('body', 'like', '%' . request('search') . '%' )
-                );
-            });
+        // search ფილტრი
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+
+            $query->where(
+                fn ($query) =>
+                $query->where('title', 'like', '%' . request('search') . '%')
+                    ->orwhere('body', 'like', '%' . request('search') . '%')
+            );
+        });
 
         // category ფილტრი
-            $query->when($filters['category'] ?? false, fn ($query, $category) =>
-             // 1) გზა 1
-
-                $query->whereHas('category', fn ($query) => //  მომიძებნე პოსტები რომლებსაც აქვთ კატეგორია
-                    $query->where('slug', $category)  // კონკრეტულად ის პოსტებირომელთა კატეგორიის slug == იუზერის მმონიშნულ კატეგორიას
-
-                )
-            
-             // 2) გზა 2 
-                // $query
-                // ->whereColumn('categories.id', 'posts.category_id')
-                // ->where('categories.slug', $category)
-
-            );   
-
-            // author ფილტრი
-            $query->when($filters['author'] ?? false, fn ($query, $author) =>
+        $query->when(
+            $filters['category'] ?? false,
+            fn ($query, $category) =>
             // 1) გზა 1
-               $query->whereHas('author', fn ($query) => 
-                   $query->where('username', $author)
-               )
 
-           );
-                
+            $query->whereHas(
+                'category',
+                fn ($query) => //  მომიძებნე პოსტები რომლებსაც აქვთ კატეგორია
+                $query->where('slug', $category)  // კონკრეტულად ის პოსტებირომელთა კატეგორიის slug == იუზერის მმონიშნულ კატეგორიას
+
+            )
+
+        );
+
+        // author ფილტრი
+        $query->when(
+            $filters['author'] ?? false,
+            fn ($query, $author) =>
+            // 1) გზა 1
+            $query->whereHas(
+                'author',
+                fn ($query) =>
+                $query->where('username', $author)
+            )
+
+        );
     }
-
 }
