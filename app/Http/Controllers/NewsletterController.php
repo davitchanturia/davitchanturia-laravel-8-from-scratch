@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\services\newsletter;
+use App\Http\Requests\NewsletterRequest;
+use App\services\Newsletter;
 
 class NewsletterController extends Controller
 {
-	public function check(newsletter $newsletter)
+	public function check(NewsletterRequest $request, newsletter $newsletter)
 	{
-		request()->validate(['email' => 'required|email']);
+		$attributes = $request->validated();
 
-		$newsletter = new newsletter();
+		$newsletter = new Newsletter();
 
-		$newsletter->subscribe(request('email'));
+		$newsletter->subscribe($attributes['email']);
 
 		return redirect(route('home'))->with('success', 'now you are signed up for our newsletter');
 	}
