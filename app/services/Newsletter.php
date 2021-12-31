@@ -7,7 +7,7 @@ use MailchimpMarketing\ApiClient;
 use Illuminate\Validation\ValidationException;
 
 // ამ კლასშI მოქცეულია api სთან დაკავშირებული ლოგიკა თუ რა კონფიგებია საჭირო და მეთოდი როგორც ვაგზავნით
-class newsletter
+class Newsletter
 {
 	public function subscribe(string $email)
 	{
