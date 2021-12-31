@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\SessionsControler;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NewsletterController;
 
@@ -27,10 +26,10 @@ Route::post('posts/{post:slug}/comments', [CommentController::class, 'store'])->
 Route::get('register', [RegisterController::class, 'create'])->name('show.registration');
 Route::post('register', [RegisterController::class, 'store'])->name('register');
 
-Route::get('login', [SessionsControler::class, 'create'])->name('show.login');
-Route::post('sessions', [SessionsControler::class, 'store'])->name('login');
+Route::get('login', [SessionsController::class, 'create'])->name('show.login');
+Route::post('sessions', [SessionsController::class, 'store'])->name('login');
 
-Route::post('logout', [SessionsControler::class, 'destroy'])->middleware('auth')->name('logout');
+Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('logout');
 
 Route::post('newsletter', [NewsletterController::class, 'check'])->name('send.email');
 
