@@ -12,7 +12,7 @@
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
             <div>
-                <a href="/">
+                <a href="{{ route('home') }}">
                     <img src="{{ asset('images/logo.svg') }}" alt="Laracasts Logo" width="165" height="16">
                 </a>
             </div>
@@ -34,7 +34,8 @@
                         <x-dropdown-item href="{{ route('dashboard') }}" :active="request()->is('/admin/posts')"> Dashboard
                         </x-dropdown-item>
                         @endadmin
-                        <x-dropdown-item href="#" x-data="{}"
+                        <x-dropdown-item 
+                             x-data="{}"
                             @click.prevent="document.querySelector('#logout-form').submit()">
                             Log Out
                         </x-dropdown-item>

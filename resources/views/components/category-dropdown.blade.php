@@ -13,14 +13,15 @@
 
 
 
-    <x-dropdown-item href="/?{{ http_build_query(request()->except('category', 'page')) }}"
+    <x-dropdown-item 
+        href="{{ route('home', [http_build_query(request()->except('category', 'page'))]) }}"
         :active="request()->routeIs('home')">All</x-dropdown-item>
 
 
     @foreach ($categories as $cat)
 
         <x-dropdown-item
-            href="/?category={{ $cat->slug }} && {{ http_build_query(request()->except('category', 'page')) }} "
+            href="{{ route('home', ['category='.$cat->slug.'&&'.http_build_query(request()->except('category', 'page'))] ) }}"
             class="block text-left px-3 text-sm leading-5" :active="request()->is('categories/{{ $cat->slug }}')">
             {{ ucwords($cat->name) }}
         </x-dropdown-item>
