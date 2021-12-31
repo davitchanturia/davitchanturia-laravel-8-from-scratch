@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -29,6 +29,7 @@ class PostFactory extends Factory
 			'title'       => $this->faker->sentence(),
 			'slug'        => $this->faker->slug(),
 			'excerpt'     => $this->faker->sentence(),
+			'thumbnail'   => $this->faker->image('public/storage', 640, 480, null, false),
 			'body'        => $this->faker->paragraph(),
 		];
 	}
