@@ -13,13 +13,13 @@
             <ul>
                 <li>
                     <a href="{{ route('show.post.create') }}"
-                        class=" {{ request()->is('admin/posts/create') ? 'text-blue-400' : '' }}">
+                        class=" {{ request()->is(route('show.post.create')) ? 'text-blue-400' : '' }}">
                         New Post
                     </a> 
                 </li>
                 <li> 
                     <a href="{{ route('dashboard') }}"
-                       class=" {{ request()->is('admin/posts') ? 'text-blue-400' : '' }}">
+                       class=" {{ request()->is(route('dashboard')) ? 'text-blue-400' : '' }}">
                     All
                         Posts
                     </a> 
