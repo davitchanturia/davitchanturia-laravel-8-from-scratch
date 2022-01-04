@@ -28,6 +28,6 @@
     </form>
 
 @else
-    <p> <a href="/register" class="hover:underline font-bold capitalize"> register </a> or <a href="/login"
+    <p> <a href="{{ route('show.registration') }}" class="hover:underline font-bold capitalize"> register </a> or <a href="/login"
             class="hover:underline font-bold capitalize"> logi in </a> if you want to comment </p>
 @endauth

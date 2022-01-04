@@ -72,7 +72,7 @@
             <div class="mt-10">
                 <div class="relative inline-block mx-auto lg:bg-gray-200 rounded-full">
 
-                    <form method="POST" action="/newsletter" class="lg:flex text-sm">
+                    <form method="POST" action="{{ route('send.email') }}" class="lg:flex text-sm">
                         @csrf
                         <div class="lg:py-3 lg:px-5 flex items-center">
                             <label for="email" class="hidden lg:inline-block">
