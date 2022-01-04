@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 
@@ -12,14 +13,9 @@ class RegisterController extends Controller
 		return view('register.create');
 	}
 
-	public function store()
+	public function store(StoreUserRequest $request)
 	{
-		$attributes = request()->validate([
-			'name'     => ['required', 'max:255', 'min:3'],
-			'username' => ['required', 'max:255', 'min:3', Rule::unique('users', 'username')],
-			'password' => ['required', 'max:255', 'min:3'],
-			'email'    => ['required', 'email', 'max:255', 'min:5', Rule::unique('users', 'email')],
-		]);
+		$attributes = $request->validated();
 
 		$user = User::create($attributes);
 
