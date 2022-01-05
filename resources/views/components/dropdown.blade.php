@@ -14,7 +14,6 @@
 
         {{ $slot }}
 
-        <a href="" class=""></a>
     </div>
 
 </div>
