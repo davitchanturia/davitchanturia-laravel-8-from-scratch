@@ -13,7 +13,7 @@ class NewsletterController extends Controller
 
 		$newsletter = new Newsletter();
 
-		$newsletter->subscribe($attributes['email']);
+		$newsletter->subscribe($attributes['newsletterEmail']);
 
 		return redirect(route('home'))->with('success', 'now you are signed up for our newsletter');
 	}
