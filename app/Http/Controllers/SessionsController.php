@@ -15,10 +15,6 @@ class SessionsController extends Controller
 	public function store(UserLoginRequest $request)
 	{
 		$attrs = $request->validated();
-		// $attrs = Request()->validate([
-		// 	'email'    => 'required|email',
-		// 	'password' => 'required',
-		// ]);
 
 		if (auth()->attempt($attrs))
 		{
